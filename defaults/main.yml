@@ -18,4 +18,4 @@
 #    write_priv: .*
 #    tags: root
 
-rabbitmq_plugins: []
+  rabbitmq_plugins: []
