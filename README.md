@@ -19,16 +19,14 @@ Simple
 
 Advanced:
 
+Watchout for commas in rabbitmq_properties !
 
   roles:
     - {
         role: "sa-queue-rabbitmq",
         rabbitmq_version: 3.6.1  
         rabbitmq_properties:
-          - {regexp: "^default_user .*", line: "default_user myuser"}
-	  - {regexp: "^default_pass .*", line: "default_pass dsfgdsgdfsgsg"}
+          - {regexp: "^%% {default_user, .*", line: "{default_user,        <<"guest">>}"}
+      	  - {regexp: "^%% {default_pass, .*", line: "{default_pass,        <<"guest">>},"}
 
       }
-
-
-

@@ -1,5 +1,21 @@
 ---
 # defaults file for sa-queue-rabbitmq
+  root_dir: "{{role_dir}}"
 
   rabbitmq_version: 3.6.1
   rabbitmq_properties: []
+
+# rabbitmq_remove_users
+#  - guest
+
+
+#rabbitmq_users:
+#  - user: root
+#    password: devroot
+#    vhost: /
+#    configure_priv: .*
+#    read_priv: .*
+#    write_priv: .*
+#    tags: root
+
+rabbitmq_plugins: []
