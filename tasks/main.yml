@@ -1,0 +1,3 @@
+---
+# tasks file for sa-queue-rabbitmq
+  - include: tasks_rabbitmq.yml

@@ -1,0 +1,24 @@
+- name: RabbitMQ | Check if rabbitmq is installed
+  command: dpkg-query -W rabbitmq
+  register: rabbitmq_check_deb
+  become: yes
+  failed_when: rabbitmq_check_deb.rc > 1
+  changed_when: rabbitmq_check_deb.rc == 1
+  tags:
+    -rabbitmq
+
+
+- name: RabbitMQ | Download package
+  get_url: 
+    url="https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v{{rabbitmq_version.replace('.','_')}}/rabbitmq-server_{{rabbitmq_version}}-1_all.deb"
+    dest="/tmp/rabbitmq.deb"
+  when: rabbitmq_check_deb.rc == 1
+  tags:
+    -rabbitmq
+
+- name: RabbitMQ | Install package
+  apt: deb="/tmp/rabbitmq.deb"
+  become: true
+  when: rabbitmq_check_deb.rc == 1
+  tags:
+    -rabbitmq

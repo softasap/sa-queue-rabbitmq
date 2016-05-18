@@ -1,0 +1,4 @@
+[submodule "roles/sa-rabbitmq"]
+        path = roles/sa-rabbitmq
+        url = https://github.com/softasap/sa-rabbitmq.git
+
