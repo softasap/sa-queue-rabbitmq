@@ -1,5 +1,6 @@
 ---
 # defaults file for sa-queue-rabbitmq
+  role_dir: "{{role_path}}"
   root_dir: "{{role_dir}}"
 
   rabbitmq_version: 3.6.1
