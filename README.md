@@ -10,17 +10,18 @@ rabbitmq_properties: list of regexes in form (regexp, line) to adjust conf  /etc
 Example of usage (all parameters are optional)
 
 Simple
-
+```
   roles:
     - {
         role: "sa-queue-rabbitmq"
       }
-
+```
 
 Advanced:
 
 Watchout for commas in rabbitmq_properties !
 
+```
   roles:
     - {
         role: "sa-queue-rabbitmq",
@@ -30,3 +31,4 @@ Watchout for commas in rabbitmq_properties !
       	  - {regexp: "^%% {default_pass, .*", line: "{default_pass,        <<"guest">>},"}
 
       }
+```
