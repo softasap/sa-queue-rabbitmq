@@ -7,10 +7,37 @@
   tags:
     -rabbitmq
 
+- name: RabbitMQ | Add an Apt signing key
+  apt_key:
+    url: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+    state: present        
+  when: rabbitmq_check_deb.rc == 1
+  become: yes
+  tags:
+    -rabbitmq
+
+- name: RabbitMQ | Erlang repository by rabbitmq
+  apt_repository:
+    repo: "deb http://dl.bintray.com/rabbitmq/debian {{ansible_distribution_release}} erlang"
+    state: present
+    filename: bintray.erlang.list
+  when: rabbitmq_check_deb.rc == 1
+  become: yes
+  tags:
+    -rabbitmq
+
+- name: RabbitMQ | Install erlang-nox
+  apt: pkg="erlang-nox" state="present" update_cache="yes"
+  when: rabbitmq_check_deb.rc == 1
+  become: yes
+  tags:
+    -rabbitmq
+
 
 - name: RabbitMQ | Download package
   get_url:
-    url="https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v{{rabbitmq_version.replace('.','_')}}/rabbitmq-server_{{rabbitmq_version}}-1_all.deb"
+#    url="https://github.com/rabbitmq/rabbitmq-server/releases/download/rabbitmq_v{{rabbitmq_version.replace('.','_')}}/rabbitmq-server_{{rabbitmq_version}}-1_all.deb"
+    url="https://github.com/rabbitmq/rabbitmq-server/releases/download/v{{rabbitmq_version}}/rabbitmq-server_{{rabbitmq_version}}-1_all.deb"
     dest="/tmp/rabbitmq.deb"
   when: rabbitmq_check_deb.rc == 1
   tags:

@@ -3,7 +3,7 @@
   role_dir: "{{role_path}}"
   root_dir: "{{role_dir}}"
 
-  rabbitmq_version: 3.6.1
+  rabbitmq_version: 3.7.9
   rabbitmq_properties: []
 
 # rabbitmq_remove_users
